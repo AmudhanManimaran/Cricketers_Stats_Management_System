@@ -6,8 +6,8 @@ def connect():
     return mysql.connector.connect(
         host='localhost',
         user='root',
-        password='12345678',
-        database='cricket_stats'
+        password='206',
+        database='test_wicket'
     )
 
 # Function to calculate age (from birthdate to deathdate or today)
