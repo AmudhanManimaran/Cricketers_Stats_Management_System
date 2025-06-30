@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Captaincy Stats | {{ player_name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>🧠 Captaincy Stats - {{ player_name }}</h3>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <strong>Matches / Won / Lost:</strong> 
+            {{ captaincy.captaincy_matches }} / {{ captaincy.captaincy_won }} / {{ captaincy.captaincy_lost }}
+        </li>
+        <li class="list-group-item"><strong>Tosses Won:</strong> {{ captaincy.tosses_won }}</li>
+        <li class="list-group-item"><strong>Chose to Field:</strong> {{ captaincy.chose_to_field }}</li>
+        <li class="list-group-item">
+            <strong>Field - Won / Lost:</strong> 
+            {{ captaincy.field_won }} / {{ captaincy.field_lost }}
+        </li>
+        <li class="list-group-item"><strong>Runs as Captain:</strong> {{ captaincy.runs_as_captain }}</li>
+        <li class="list-group-item"><strong>Batting Avg as Captain:</strong> {{ captaincy.batting_avg_as_captain }}</li>
+    </ul>
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}

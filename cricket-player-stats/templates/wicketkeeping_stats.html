@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Wicketkeeping Stats | Cricket Stats{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ player_name }} - Wicketkeeping Stats</h3>
+
+    {% if stats %}
+    <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Catches:</strong> {{ stats.catches }}</li>
+        <li class="list-group-item"><strong>Stumpings:</strong> {{ stats.stumpings }}</li>
+        <li class="list-group-item"><strong>Most Catches in Innings:</strong> {{ stats.most_catches_innings }}</li>
+        <li class="list-group-item"><strong>Most Catches in Match:</strong> {{ stats.most_catches_in_match }}</li>
+        <li class="list-group-item"><strong>Most Dismissals in Innings:</strong> {{ stats.most_dismissals_innings }}</li>
+    </ul>
+    {% else %}
+    <div class="alert alert-warning mt-3">
+        No wicketkeeping data available for {{ player_name }}.
+    </div>
+    {% endif %}
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}

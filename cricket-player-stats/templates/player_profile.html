@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Player Profile | Cricket Stats{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ player.full_name }} - Profile</h3>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Player ID:</strong> {{ player.player_id }}</li>
+        <li class="list-group-item"><strong>Birthdate:</strong> {{ player.birthdate }}</li>
+        <li class="list-group-item"><strong>Deathdate:</strong> {{ player.deathdate }}</li>
+        <li class="list-group-item"><strong>Current Age:</strong> {{ player.current_age }}</li>
+        <li class="list-group-item"><strong>Bats:</strong> {{ player.bats }}</li>
+        <li class="list-group-item"><strong>Bowls:</strong> {{ player.bowls }}</li>
+        <li class="list-group-item"><strong>Matches:</strong> {{ player.matches }}</li>
+        <li class="list-group-item"><strong>Teams:</strong> {{ player.teams }}</li>
+    </ul>
+
+    <div class="btn-group mt-4">
+        <a href="{{ url_for('batting_stats', player_id=player.player_id) }}" class="btn btn-outline-success">Batting</a>
+        <a href="{{ url_for('bowling_stats', player_id=player.player_id) }}" class="btn btn-outline-primary">Bowling</a>
+        <a href="{{ url_for('fielding_stats', player_id=player.player_id) }}" class="btn btn-outline-warning">Fielding</a>
+        <a href="{{ url_for('wicketkeeping_stats', player_id=p.player_id) }}" class="btn btn-outline-warning btn-sm">Wicketkeeping</a>
+        <a href="{{ url_for('captaincy_stats', player_id=player.player_id) }}" class="btn btn-outline-info">Captaincy</a>
+    </div>
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}

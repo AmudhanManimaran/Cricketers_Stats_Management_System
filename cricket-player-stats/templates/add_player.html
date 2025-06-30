@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Add Player | Cricket Stats{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h3>Add New Player</h3>
+    <form method="POST">
+        <h5>Personal Details</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" name="player_id" class="form-control mb-2" placeholder="Player ID" required>
+                <input type="text" name="full_name" class="form-control mb-2" placeholder="Full Name" required>
+                <input type="date" name="birthdate" class="form-control mb-2" placeholder="Birthdate" required>
+                <input type="text" name="current_age" class="form-control mb-2" placeholder="Current Age" required>
+                <input type="text" name="bats" class="form-control mb-2" placeholder="Bats" required>
+                <input type="text" name="bowls" class="form-control mb-2" placeholder="Bowls" required>
+                <input type="number" name="matches" class="form-control mb-2" placeholder="Matches Played" required>
+                <input type="text" name="teams" class="form-control mb-2" placeholder="Teams" required>
+            </div>
+        </div>
+
+        <h5 class="mt-4">Batting Stats</h5>
+        <div class="row">
+            {% for field in ['innings', 'not_outs', 'aggregate_runs', 'highest_score', 'batting_average', 'fifties', 'hundreds', 'double_hundreds', 'triple_hundreds', 'ducks', 'pairs', 'fours', 'sixes', 'balls_faced', 'scoring_rate', 'opened_batting', 'top_scored_in_innings', 'percent_team_runs'] %}
+                <div class="col-md-3">
+                    <input type="text" name="{{ field }}" class="form-control mb-2" placeholder="{{ field.replace('_', ' ').title() }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h5 class="mt-4">Bowling Stats</h5>
+        <div class="row">
+            {% for field in ['balls_bowled', 'maidens', 'runs_conceded', 'wickets', 'economy_rate', 'best_innings'] %}
+                <div class="col-md-3">
+                    <input type="text" name="{{ field }}" class="form-control mb-2" placeholder="{{ field.replace('_', ' ').title() }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h5 class="mt-4">Fielding Stats</h5>
+        <div class="row">
+            {% for field in ['catches', 'most_catches_innings', 'most_catches_in_match'] %}
+                <div class="col-md-3">
+                    <input type="text" name="{{ field }}" class="form-control mb-2" placeholder="{{ field.replace('_', ' ').title() }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <h5 class="mt-4">Captaincy Stats</h5>
+        <div class="row">
+            {% for field in ['captaincy_matches', 'captaincy_won', 'captaincy_lost', 'tosses_won', 'chose_to_field', 'field_won', 'field_lost', 'runs_as_captain', 'batting_avg_as_captain'] %}
+                <div class="col-md-3">
+                    <input type="text" name="{{ field }}" class="form-control mb-2" placeholder="{{ field.replace('_', ' ').title() }}">
+                </div>
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
+{% endblock %}

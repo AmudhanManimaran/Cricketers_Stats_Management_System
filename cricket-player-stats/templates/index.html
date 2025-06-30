@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Cricket Stats{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>All Players</h2>
+
+    <!-- 🔍 Search Form -->
+    <form method="POST" class="mb-3">
+        <input type="text" name="search_name" placeholder="Enter Player Name" required>
+        <button type="submit" class="btn btn-primary btn-sm">Search</button>
+    </form>
+
+    {% if searched %}
+        {% if player %}
+            <div class="alert alert-success">
+                <h5>Player Found:</h5>
+                <p><strong>Player ID:</strong> {{ player.player_id }}</p>
+                <p><strong>Name:</strong> {{ player.full_name }}</p>
+                <p><strong>Birthdate:</strong> {{ player.birthdate }}</p>
+                <p><strong>Age:</strong> {{ player.current_age }}</p>
+                <p><strong>Bats:</strong> {{ player.bats }}</p>
+                <p><strong>Bowls:</strong> {{ player.bowls }}</p>
+                <p><strong>Matches:</strong> {{ player.matches }}</p>
+                <p><strong>Teams:</strong> {{ player.teams }}</p>
+
+                <div class="btn-group mt-2">
+                    <a href="{{ url_for('player_profile', player_id=player.player_id) }}" class="btn btn-secondary btn-sm">Profile</a>
+                    <a href="{{ url_for('batting_stats', player_id=player.player_id) }}" class="btn btn-outline-success btn-sm">Batting</a>
+                    <a href="{{ url_for('bowling_stats', player_id=player.player_id) }}" class="btn btn-outline-primary btn-sm">Bowling</a>
+                    <a href="{{ url_for('fielding_stats', player_id=player.player_id) }}" class="btn btn-outline-warning btn-sm">Fielding</a>
+                    <a href="{{ url_for('captaincy_stats', player_id=player.player_id) }}" class="btn btn-outline-info btn-sm">Captaincy</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-danger">
+                No player found with that name.
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <a href="{{ url_for('add_player') }}" class="btn btn-success mb-3"></a>
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Player ID</th>
+                <th>Full Name</th>
+                <th>Links</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in players %}
+            <tr>
+                <td>{{ p.player_id }}</td>
+                <td>{{ p.full_name }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="{{ url_for('player_profile', player_id=p.player_id) }}" class="btn btn-secondary btn-sm">Profile</a>
+                        <a href="{{ url_for('batting_stats', player_id=p.player_id) }}" class="btn btn-outline-success btn-sm">Batting</a>
+                        <a href="{{ url_for('bowling_stats', player_id=p.player_id) }}" class="btn btn-outline-primary btn-sm">Bowling</a>
+                        <a href="{{ url_for('fielding_stats', player_id=p.player_id) }}" class="btn btn-outline-warning btn-sm">Fielding</a>
+                        <a href="{{ url_for('wicketkeeping_stats', player_id=p.player_id) }}" class="btn btn-outline-warning btn-sm">Wicketkeeping</a>
+                        <a href="{{ url_for('captaincy_stats', player_id=p.player_id) }}" class="btn btn-outline-info btn-sm">Captaincy</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

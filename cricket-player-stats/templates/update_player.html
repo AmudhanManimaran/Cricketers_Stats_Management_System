@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}Update {{ player['full_name'] }}{% endblock %}
+
+{% block content %}
+<h2 class="mt-4">✏️ Update Player - {{ player['full_name'] }}</h2>
+
+<form method="POST" class="row g-3">
+
+    <!-- 🧍 Personal Info -->
+    <h4>🧍 Personal Details</h4>
+    {% for field in ['full_name', 'birthdate', 'current_age', 'bats', 'bowls', 'matches', 'teams'] %}
+    <div class="col-md-6">
+        <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" name="{{ field }}" class="form-control" value="{{ player[field] }}">
+    </div>
+    {% endfor %}
+
+    <!-- 🏏 Batting -->
+    <h4 class="mt-4">🏏 Batting Stats</h4>
+    {% for field in ['innings', 'not_outs', 'aggregate_runs', 'highest_score', 'batting_average', 'fifties', 'hundreds', 'double_hundreds', 'triple_hundreds', 'ducks', 'pairs', 'fours', 'sixes', 'balls_faced', 'scoring_rate', 'opened_batting', 'top_scored_in_innings', 'percent_team_runs'] %}
+    <div class="col-md-4">
+        <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" name="{{ field }}" class="form-control" value="{{ player[field] }}">
+    </div>
+    {% endfor %}
+
+    <!-- 🎯 Bowling -->
+    <h4 class="mt-4">🎯 Bowling Stats</h4>
+    {% for field in ['balls_bowled', 'maidens', 'runs_conceded', 'wickets', 'economy_rate', 'best_innings', 'best_match'] %}
+    <div class="col-md-4">
+        <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" name="{{ field }}" class="form-control" value="{{ player[field] }}">
+    </div>
+    {% endfor %}
+
+    <!-- 🧤 Fielding -->
+    <h4 class="mt-4">🧤 Fielding Stats</h4>
+    {% for field in ['catches', 'most_catches_innings', 'most_catches_in_match'] %}
+    <div class="col-md-4">
+        <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" name="{{ field }}" class="form-control" value="{{ player[field] }}">
+    </div>
+    {% endfor %}
+
+    <!-- 🧠 Captaincy -->
+    <h4 class="mt-4">🧠 Captaincy Stats</h4>
+    {% for field in ['captaincy_matches', 'captaincy_won', 'captaincy_lost', 'tosses_won', 'chose_to_field', 'field_won', 'field_lost', 'runs_as_captain', 'batting_avg_as_captain'] %}
+    <div class="col-md-4">
+        <label for="{{ field }}" class="form-label">{{ field.replace('_', ' ').title() }}</label>
+        <input type="text" name="{{ field }}" class="form-control" value="{{ player[field] }}">
+    </div>
+    {% endfor %}
+
+    <!-- Submit -->
+    <div class="col-12 mt-4">
+        <button type="submit" class="btn btn-primary">💾 Update Player</button>
+        <a href="{{ url_for('player_profile', player_id=player['player_id']) }}" class="btn btn-secondary">← Cancel</a>
+    </div>
+</form>
+{% endblock %}

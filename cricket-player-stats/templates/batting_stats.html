@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Batting Stats | Cricket Stats{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ player.full_name }} - Batting Stats</h3>
+    
+    <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Innings:</strong> {{ stats.innings }}</li>
+        <li class="list-group-item"><strong>Not Outs:</strong> {{ stats.not_outs }}</li>
+        <li class="list-group-item"><strong>Total Runs:</strong> {{ stats.aggregate_runs }}</li>
+        <li class="list-group-item"><strong>Highest Score:</strong> {{ stats.highest_score }}</li>
+        <li class="list-group-item"><strong>Average:</strong> {{ stats.batting_average }}</li>
+        <li class="list-group-item"><strong>50s / 100s / 200s / 300s:</strong> {{ stats.fifties }} / {{ stats.hundreds }} / {{ stats.double_hundreds }} / {{ stats.triple_hundreds }}</li>
+        <li class="list-group-item"><strong>Ducks / Pairs:</strong> {{ stats.ducks }} / {{ stats.pairs }}</li>
+        <li class="list-group-item"><strong>Fours / Sixes:</strong> {{ stats.fours }} / {{ stats.sixes }}</li>
+        <li class="list-group-item"><strong>Balls Faced:</strong> {{ stats.balls_faced }}</li>
+        <li class="list-group-item"><strong>Scoring Rate:</strong> {{ stats.scoring_rate }}</li>
+        <li class="list-group-item"><strong>Opened Batting:</strong> {{ stats.opened_batting }}</li>
+        <li class="list-group-item"><strong>Top Scored Innings:</strong> {{ stats.top_scored_in_innings }}</li>
+        <li class="list-group-item"><strong>% Team Runs:</strong> {{ stats.percent_team_runs }}%</li>
+    </ul>
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}

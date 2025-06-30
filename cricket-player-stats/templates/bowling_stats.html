@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Bowling Stats | Cricket Stats{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ player_name }} - Bowling Stats</h3>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Balls Bowled:</strong> {{ stats.balls_bowled }}</li>
+        <li class="list-group-item"><strong>Maidens:</strong> {{ stats.maidens }}</li>
+        <li class="list-group-item"><strong>Runs Conceded:</strong> {{ stats.runs_conceded }}</li>
+        <li class="list-group-item"><strong>Wickets:</strong> {{ stats.wickets }}</li>
+        <li class="list-group-item"><strong>Economy Rate:</strong> {{ stats.economy_rate }}</li>
+        <li class="list-group-item"><strong>Best Innings:</strong> {{ stats.best_innings }}</li>
+    </ul>
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}

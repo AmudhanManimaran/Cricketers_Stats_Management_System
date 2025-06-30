@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Players</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>All Players</h1>
+    <a href="{{ url_for('add_player') }}">➕ Add New Player</a>
+    <br><br>
+    <table border="1" cellpadding="8">
+        <thead>
+            <tr>
+                <th>Player ID</th>
+                <th>Full Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td>{{ player[0] }}</td>
+                <td>{{ player[1] }}</td>
+                <td>
+                    <a href="{{ url_for('player_profile', player_id=player[0]) }}">View</a> |
+                    <a href="{{ url_for('update_player', player_id=player[0]) }}">Update</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ url_for('home') }}">🏠 Back to Home</a>
+</body>
+</html>

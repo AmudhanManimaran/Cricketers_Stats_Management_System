@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Search Player | Cricket Stats{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h3>Search Player</h3>
+    <form method="POST">
+        <input type="text" name="search_name" placeholder="Enter Player Name" class="form-control mb-3" required>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    {% if searched %}
+        {% if player %}
+            <div class="card mt-4 p-3">
+                <h4>{{ player.full_name }} - Full Profile</h4>
+                <p><strong>Player ID:</strong> {{ player.player_id }}</p>
+                <p><strong>Birthdate:</strong> {{ player.birthdate }}</p>
+                <p><strong>Age:</strong> {{ player.current_age }}</p>
+                <p><strong>Bats:</strong> {{ player.bats }}</p>
+                <p><strong>Bowls:</strong> {{ player.bowls }}</p>
+                <p><strong>Matches:</strong> {{ player.matches }}</p>
+                <p><strong>Teams:</strong> {{ player.teams }}</p>
+
+                <div class="btn-group mt-3">
+                    <a href="{{ url_for('player_profile', player_id=player.player_id) }}" class="btn btn-secondary">Profile</a>
+                    <a href="{{ url_for('batting_stats', player_id=player.player_id) }}" class="btn btn-outline-success">Batting</a>
+                    <a href="{{ url_for('bowling_stats', player_id=player.player_id) }}" class="btn btn-outline-primary">Bowling</a>
+                    <a href="{{ url_for('fielding_stats', player_id=player.player_id) }}" class="btn btn-outline-warning">Fielding</a>
+                    <a href="{{ url_for('captaincy_stats', player_id=player.player_id) }}" class="btn btn-outline-info">Captaincy</a>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-danger mt-3">No player found.</div>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

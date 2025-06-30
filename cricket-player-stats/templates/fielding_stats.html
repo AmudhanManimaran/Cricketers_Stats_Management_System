@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Fielding Stats | Cricket Stats{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>{{ player_name }} - Fielding Stats</h3>
+
+    <ul class="list-group mt-3">
+        <li class="list-group-item"><strong>Catches:</strong> {{ stats.catches }}</li>
+        <li class="list-group-item"><strong>Most in Innings:</strong> {{ stats.most_catches_innings }}</li>
+        <li class="list-group-item"><strong>Most in Match:</strong> {{ stats.most_catches_in_match }}</li>
+    </ul>
+
+    <a href="{{ url_for('home') }}" class="btn btn-link mt-3">← Back to Home</a>
+</div>
+{% endblock %}
